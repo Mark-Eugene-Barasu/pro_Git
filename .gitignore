@@ -1,3 +1,9 @@
-*.js
+# These are the files or directories that will be ignored
+
+# ignore all the files with the .js extensions
+*.sjs
+
+# but do track only [forth.js], even though your're ignoring all .a files
+!forth.js
 
 # There is nothing to worry about
