@@ -1,7 +1,3 @@
-/* 
- This is how to write a multiline comment in JavaScript 
-*/
-
 // this sure is a single lined comment here
 
 // this will bring out any random number between 1 and 10
@@ -26,7 +22,13 @@ creating the second person object from the constructor function
 */
 const second_person = new MakePerson(`Abigail`, `Sapor`, 32);
 
+
+// creating the thirdPerson
+const thirdPerson = new MakePerson(`Alphred`, `Saloon`, 37, `real-estate`)
+
+
 // logging the constructor function methods of each person object
 console.log(firstPerson.fullName());
 console.log(second_person.fullName());
+console.log(thirdPerson());
 
