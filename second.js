@@ -32,3 +32,4 @@ console.log(firstPerson.fullName());
 console.log(second_person.fullName());
 console.log(thirdPerson());
 
+// works well
