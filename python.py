@@ -1,6 +1,7 @@
 """ tricky sum question from ticktock """
 
 def tricky_sum(n):
+
     """ code comes here """
     if n == 0:
         return 0
