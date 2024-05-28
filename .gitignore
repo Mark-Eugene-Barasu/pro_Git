@@ -1,21 +1,4 @@
-# These are the files or directories that will be ignored
-
-# ignore all the files with the .js extensions
-*.js
-
-# but do track only [forth.js], even though your're ignoring all .a files
-!forth.js
-
-# onely ignore the .css files in the current directory, not subdir/*.css
-/*.css
-
-# ignore every files in any directory named Stylesheet
-StyleSheet/
-
-# ignore doc/notes.txt, but not doc/server/arch.txt
-doc/*.txt
-
-# ignore all .pdf files in the doc/ directory and any of it subdirectories 
-doc/**/*.pdf
-
-# There is nothing to worry about
+*.gem
+*.swp
+rdoc/
+pkg/

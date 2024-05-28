@@ -1,23 +1,32 @@
 require 'rubygems'
-Gem::manage_gems
-require 'rake/gempackagetask'
+require 'rake'
+require 'rake/clean'
+require 'rake/rdoctask'
+require 'rspec/core/rake_task'
 
-spec = Gem::Specification.new do |s|
-    s.platform  =   Gem::Platform::RUBY
-    s.name      =   "simplegit"
-    s.version   =   "0.1.1"
-    s.author    =   "Scott Chacon"
-    s.email     =   "schacon@gmail.com"
-    s.summary   =   "A simple gem for using Git in Ruby code."
-    s.files     =   FileList['lib/**/*'].to_a
-    s.require_path  =   "lib"
+CLEAN.include('**/*.gem')
+
+desc "Creates the TicGit-ng gem"
+task :create_gem => [:clean] do
+  spec = eval(IO.read('ticgit-ng.gemspec'))
+  gem = Gem::Builder.new(spec).build
+  Dir.mkdir("pkg") unless Dir.exists? "pkg"
+  FileUtils.mv("#{File.dirname(__FILE__)}/#{gem}", "pkg")
 end
 
-Rake::GemPackageTask.new(spec) do |pkg|
-    pkg.need_tar = true
+desc "Runs spec suite"
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = 'spec/*_spec.rb'
+  spec.rspec_opts = ['--backtrace --colour']
 end
 
-task :default => "pkg/#{spec.name}-#{spec.version}.gem" do
-    puts "generated latest version"
+desc "Creates rdoc documentation"
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION').chomp : ""
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "TicGit-ng #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
+task :default => :create_gem
