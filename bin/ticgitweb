@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-
 # starts a sinatra based web server that provides an interface to 
 # your ticgit tickets
 # 
